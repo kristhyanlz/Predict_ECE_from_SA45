@@ -37032,3 +37032,40 @@ numpy.exceptions.AxisError: axis 1 is out of bounds for array of dimension 1
                                  solver='auto', tol=0.0001))],
          verbose=False)
 2024-11-25 12:51:32,570:INFO:save_model() successfully completed......................................
+2024-11-25 13:08:26,969:INFO:Initializing plot_model()
+2024-11-25 13:08:26,969:INFO:plot_model(self=<pycaret.classification.oop.ClassificationExperiment object at 0x0000019156C97D90>, estimator=Pipeline(memory=Memory(location=None),
+         steps=[('numerical_imputer',
+                 TransformerWrapper(exclude=None, include=['Sexo'],
+                                    transformer=SimpleImputer(add_indicator=False,
+                                                              copy=True,
+                                                              fill_value=None,
+                                                              keep_empty_features=False,
+                                                              missing_values=nan,
+                                                              strategy='mean'))),
+                ('categorical_imputer',
+                 TransformerWrapper(exclude=None,
+                                    include=['Somatización', 'Obsesión/com',
+                                             'Sen....
+                                                              return_df=True,
+                                                              use_cat_names=True,
+                                                              verbose=0))),
+                ('clean_column_names',
+                 TransformerWrapper(exclude=None, include=None,
+                                    transformer=CleanColumnNames(match='[\\]\\[\\,\\{\\}\\"\\:]+'))),
+                ('actual_estimator',
+                 RidgeClassifier(alpha=3.2, class_weight=None, copy_X=True,
+                                 fit_intercept=True, max_iter=None,
+                                 positive=False, random_state=123,
+                                 solver='auto', tol=0.0001))],
+         verbose=False), plot=confusion_matrix, scale=1, save=False, fold=None, fit_kwargs=None, plot_kwargs=None, groups=None, feature_name=None, label=False, verbose=True, system=True, display=None, display_format=None)
+2024-11-25 13:08:26,969:INFO:Checking exceptions
+2024-11-25 13:08:26,973:INFO:Preloading libraries
+2024-11-25 13:08:26,973:INFO:Copying training dataset
+2024-11-25 13:08:26,974:INFO:Plot type: confusion_matrix
+2024-11-25 13:08:27,188:INFO:Fitting Model
+2024-11-25 13:08:27,188:WARNING:D:\coding\Predict_ECE_from_SA45\backend\.venv\Lib\site-packages\sklearn\base.py:493: UserWarning: X does not have valid feature names, but RidgeClassifier was fitted with feature names
+  warnings.warn(
+
+2024-11-25 13:08:27,189:INFO:Scoring test/hold-out set
+2024-11-25 13:08:27,296:INFO:Visual Rendered Successfully
+2024-11-25 13:08:27,397:INFO:plot_model() successfully completed......................................
