@@ -50,6 +50,8 @@ def procesar_excel():
 
     # Realizar predicciones
     predicciones = predict_model(modelo_cargado, data=df)
+
+    predicciones = predicciones.rename(columns={'prediction_label': 'Predicción'})
     # Mapear inverso
     category_map_inv = {v: k for k, v in category_map.items()}
     sexo_map_inv = {v: k for k, v in sexo_map.items()}

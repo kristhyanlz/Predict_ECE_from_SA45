@@ -16,6 +16,7 @@ const cols = [
   { name: "Psicoticismo", label: "Psicoticismo", options: { filter: true, sort: true } },
   { name: "SA45", label: "SA-45", options: { filter: true, sort: true } },
   { name: "Agotamiento", label: "Agotamiento", options: { filter: true, sort: true } },
+  { name: "Predicción", label: "Predicción", options: { filter: true, sort: true } },
 ];
 
 const options = {
