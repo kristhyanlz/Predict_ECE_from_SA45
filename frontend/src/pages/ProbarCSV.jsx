@@ -4,7 +4,7 @@ import MUIDataTable from "mui-datatables";
 import * as XLSX from "xlsx";
 
 const cols = [
-  { name: "Sexo", label: "Sexo", options: { filter: true, sort: true }},
+  { name: "Sexo", label: "Sexo", options: { filter: true, sort: true } },
   { name: "Somatización", label: "Somatización", options: { filter: true, sort: true } },
   { name: "Sen. Emocio.", label: "Sensibilidad Emocional", options: { filter: true, sort: true } },
   { name: "Obsesión/com", label: "Obsesión Compulsión", options: { filter: true, sort: true } },
@@ -22,6 +22,17 @@ const cols = [
 const options = {
   selectableRows: "none",
   filterType: "checkbox",
+};
+
+const categoryMap = {
+  0: "Bajo",
+  1: "Promedio",
+  2: "Alto",
+};
+
+const sexoMap = {
+  1: "Hombre",
+  2: "Mujer",
 };
 
 const ProbarCSV = () => {
@@ -43,16 +54,11 @@ const ProbarCSV = () => {
       // Convertir los datos a JSON
       const jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
 
-      const sexoMap = {
-        1: 'Hombre',
-        2: 'Mujer'
-      }
       // Seleccionar la primera columna y las últimas 11 columnas
       const selectedColumns = jsonData.map((row) => {
-        const sexo = sexoMap[row[0]] || row[0]
-        return [sexo, ...row.slice(-11)]
-      })
-
+        const sexo = sexoMap[row[0]] || row[0];
+        return [sexo, ...row.slice(-11)];
+      });
 
       // Configurar las filas para MUIDataTable (excluyendo la fila de encabezados)
       setData(selectedColumns.slice(1));
@@ -71,7 +77,6 @@ const ProbarCSV = () => {
       return formattedRow;
     });
 
-    console.log(JSON.stringify(formattedData))
     try {
       const response = await fetch("http://localhost:8000/excel", {
         method: "POST",
@@ -80,7 +85,19 @@ const ProbarCSV = () => {
       });
 
       if (response.ok) {
-        console.log("Datos enviados correctamente");
+        const responseData = await response.json();
+
+        // Traducir los valores numéricos de la respuesta del backend
+        const translatedData = responseData.map((row) => {
+          return cols.map((col) => {
+            if (col.name === "Sexo") {
+              return sexoMap[row[col.name]] || row[col.name];
+            }
+            return categoryMap[row[col.name]] || row[col.name];
+          });
+        });
+
+        setData(translatedData);
       } else {
         console.error("Error al enviar los datos");
       }
@@ -88,7 +105,7 @@ const ProbarCSV = () => {
       console.error("Error de red:", error);
     }
   };
-  
+
   return (
     <Container
       sx={{
@@ -102,7 +119,7 @@ const ProbarCSV = () => {
       <Typography variant="h4" gutterBottom>
         Subir y Mostrar Excel
       </Typography>
-      {data.length == 0 && (
+      {data.length === 0 && (
         <Button variant="contained" component="label">
           Subir Archivo
           <input type="file" hidden accept=".xlsx, .xls" onChange={handleFileUpload} />
@@ -122,7 +139,6 @@ const ProbarCSV = () => {
           <Box sx={{ height: 400, width: "100%", marginTop: 2 }}>
             <MUIDataTable title="Datos Subidos" data={data} columns={cols} options={options} />
           </Box>
-          
         </>
       )}
     </Container>
