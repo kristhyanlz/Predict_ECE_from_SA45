@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import {useState, useEffect} from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -45,16 +45,12 @@ const lightTheme = createTheme({
 });
 
 
-const negrita = { fontWeight: 'bold' }
-
 const pages = [
-  {text: 'Historial', link:'/Pacientes'},
-  {text: 'Ficha', link: '/FichaSociodemografica'},
-  {text: 'Test', link: '/Test'},
+  {text: 'Formulario', link:'/'},
+  {text: 'CSV', link: '/csv'},
   {text: 'Resultados', link:'/Resultados'},
   
 ];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function Barra( {children}) {
   const location = useLocation();
