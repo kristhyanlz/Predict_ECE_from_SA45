@@ -5,6 +5,7 @@ import pandas as pd
 modelo_cargado = load_model('modelo-SA45-ECE')
 
 # Ejemplo de datos de prueba (debes reemplazarlo por tus datos reales)
+#Sexo 	Somatización 	Obsesión/com 	Sen. Emocio. 	Depresión 	Ansiedad 	Hostilidad 	Ans. Fóbica 	Ideación Paran. 	Psicoticismo 	Agotamiento 	SA45
 datos_prueba = pd.DataFrame({
     'Somatización': [2, 3, 1, 3],
     'Obsesión/com': [3, 2, 1, 3],

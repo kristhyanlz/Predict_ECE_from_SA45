@@ -1,13 +1,13 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Button, Container, Typography, Box } from "@mui/material";
 import MUIDataTable from "mui-datatables";
 import * as XLSX from "xlsx";
 
 const cols = [
-  { name: "sexo", label: "Sexo", options: { filter: true, sort: true }},
+  { name: "Sexo", label: "Sexo", options: { filter: true, sort: true }},
   { name: "Somatización", label: "Somatización", options: { filter: true, sort: true } },
   { name: "Sen. Emocio.", label: "Sensibilidad Emocional", options: { filter: true, sort: true } },
-  { name: "Obsesión/com", label: "Obsesión compulsión", options: { filter: true, sort: true } },
+  { name: "Obsesión/com", label: "Obsesión Compulsión", options: { filter: true, sort: true } },
   { name: "Depresión", label: "Depresión", options: { filter: true, sort: true } },
   { name: "Ansiedad", label: "Ansiedad", options: { filter: true, sort: true } },
   { name: "Hostilidad", label: "Hostilidad", options: { filter: true, sort: true } },
@@ -65,7 +65,7 @@ const ProbarCSV = () => {
     const formattedData = data.map((row) => {
       const formattedRow = {};
       cols.forEach((col, index) => {
-        formattedRow[col.label] = row[index];
+        formattedRow[col.name] = row[index];
       });
       return formattedRow;
     });
